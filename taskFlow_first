@@ -1,8 +1,13 @@
 from fastapi import FastAPI
 
-taskFlow = FastAPI()
+app = FastAPI()
+
+tasks = [
+    {"id": 1, "title": "Изучить FastAPI", "done": False},
+    {"id": 2, "title": "Написать первый эндпоинт", "done": True},
+]
 
 
-@taskFlow.get("/")
-async def root():
-    return {"APP": "TaskFlow"}
+@app.get("/tasks")
+def get_tasks():
+    return tasks
