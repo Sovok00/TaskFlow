@@ -1,0 +1,8 @@
+from fastapi import FastAPI
+
+taskFlow = FastAPI()
+
+
+@taskFlow.get("/")
+async def root():
+    return {"APP": "TaskFlow"}
