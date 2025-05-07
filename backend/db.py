@@ -1,4 +1,4 @@
-from .models import Task
+from models import Task
 
 task_db: list[Task] = [
   Task(id=1, title="Изучить FastAPI", done=False),
