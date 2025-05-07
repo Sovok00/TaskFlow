@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from .db import task_db
-from .models import Task, TaskCreate
+from db import task_db
+from models import Task, TaskCreate
 
 app = FastAPI()
 
