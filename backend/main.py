@@ -1,27 +1,15 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
-from typing import List
+from .db import task_db
+from .models import Task, TaskCreate
 
 app = FastAPI()
 
-# Модель задачи (Pydantic)
-class Task(BaseModel):
-    id: int
-    title: str
-    done: bool = False
 
-# Mock-данные (временная замена БД)
-tasks_db: List[Task] = [
-    Task(id=1, title="Изучить FastAPI", done=False),
-    Task(id=2, title="Написать первый API", done=True),
-]
-
-# Получить все задачи
 @app.get("/tasks", response_model=List[Task])
 async def get_tasks():
     return tasks_db
 
-# Добавить задачу
+
 @app.post("/tasks", response_model=Task)
 async def create_task(task: Task):
     new_task = Task(id=len(tasks_db) + 1, title=task.title, done=task.done)
